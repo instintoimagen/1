@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+ <!-- BOOTSTRAP - Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+ <title> Fundamentos Javascript │ Aprende JS con JonMircha</title>
+</head>
+
+<body>
+ <div class="container">
+  <br>
+  <h1>Expresiones Regulares</h1>
+  <h4>Ver en la consola presionando</h4>
+  <button class="btn btn-primary">F12</button>
+ </div>
+ <div class="container">
+  <!--  <div class="ratio ratio-16x9">
+   <iframe src="https://www.youtube.com/embed/olKCC3n8lkM" title="YouTube video player" frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen></iframe>
+  </div> -->
+ </div>
+
+
+ <script>
+
+  let cadena = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum nemo atque harum tempore quod facere recusandae repellendus iste, vitae voluptate odio omnis architecto labore minima est exercitationem tenetur lorem Lorem expedita laboriosam!"
+
+  //se puede declarar con funcion constructora
+  //  let expReg = new RegExp("lorem", "gi");
+
+  //o directamente, entre barras y luego las banderas
+  /* let expReg2 = /lorem{2,}/ig;
+
+  console.log(expReg2.test(cadena))
+  console.log(expReg2.exec(cadena))
+ */
+  let edad = prompt("introduzca su edad")
+
+  let expRegEdad = / \D /g;
+  console.log(expRegEdad.test(edad))
+
+  if (expRegEdad == true) {
+   let edad = prompt("Ingrese solo números. ¿Cuál es su edad?");
+  } else {
+   if (edad < 41) {
+    alert("Qué joven que eres")
+   } else {
+    alert("Qué viejo que sos!")
+   }
+  }
+  console.log("Programa Terminado")
+
+
+
+
+ </script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>

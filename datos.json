@@ -1,0 +1,11 @@
+{
+  "cadena": "Sergio",
+  "número": 40,
+  "booleano": true,
+  "arreglo": ["ser papá del Coco", "Dirigir Tv", "programar"],
+  "objeto": {
+    "instagram": "@sergio.instintoimagen",
+    "mail": "instintoimagen@gmail.com"
+  },
+  "nulo": null
+}

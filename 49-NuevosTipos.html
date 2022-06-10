@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+ <!-- BOOTSTRAP - Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ <title> MODULOS │ Fundamentos Javascript │ Aprende JS con JonMircha</title>
+</head>
+
+<body>
+ <div class="container">
+  <br>
+  <h1>Nuevos Tipos de Datos</h1>
+  <h4>Ver en la consola presionando</h4>
+  <button class="btn btn-primary">F12</button>
+ </div>
+
+ <script>
+  /*
+  let id = Symbol("id");
+  let id2 = Symbol("id2");
+
+  console.log(id === id2)
+  console.log(id, id2)
+  console.log(`El tipo de dato es: ` + typeof id + `\n` + `El tipo de dato es: ` + typeof id2)
+
+  const NOMBRE = Symbol("primer nombre");
+  const SALUDAR = Symbol("saludar");
+
+  const PERSONA = {
+   [NOMBRE]: "Sergio",
+   edad: 40,
+   profesion: ["desarrollador", "fotografo", "director de programas de tv"]
+  }
+
+  console.log(PERSONA)
+
+  PERSONA.NOMBRES = "Sergio A. Ortega"
+
+  console.log(PERSONA)
+
+  console.log(PERSONA.NOMBRES)
+  console.log(PERSONA[NOMBRE])
+
+  PERSONA[SALUDAR] = function () {
+   console.log(`Hola me llamo ${PERSONA[NOMBRE]} y saludo con los pies`)
+  }
+
+  console.log(PERSONA)
+  PERSONA[SALUDAR]()
+
+
+  for (let propiedad in PERSONA) {
+   console.log(`************\nPropiedades comunes del for in :` + propiedad);
+   console.log(`Valor Propiedad: ` + PERSONA[propiedad])
+  }
+
+  console.log(Object.getOwnPropertySymbols(PERSONA));
+
+
+  const set = new Set([1, 2, 3, 45, 5, 5, 6, 5, 7, true, false, false, {}, {}, "hola", "HOLA"]);
+  console.log(set)
+  console.log("--- Este Set tiene " + set.size + " valores ---")
+
+  const set2 = new Set();
+  set2.add("primer valor", 1, true)
+  set2.add(2)
+  set2.add([])
+  set2.add({})
+
+  set.add("último valor")
+
+  console.log(set)
+  console.log(set2)
+
+  // para recorrer un set podemos usar For
+  for (idem of set) {
+   console.log(idem)
+  }
+
+  console.log("+++ recorriendo set2 +++")
+  set2.forEach(element => {
+   console.log((element))
+  });
+
+  console.log("*** transformando en arreglo para iterar una posición ***")
+
+  let arrSet = Array.from(set)
+  console.log(arrSet)
+  console.log(arrSet[10])
+  console.log(`4ta Posición: ${arrSet[3]} \n14º Posición: ${arrSet[13]}`)
+
+  set.delete(3)
+  console.log(set)
+
+  console.log(set.has(56))
+
+
+  let mapa = new Map();
+  mapa.set("Nombre", "Sergio");
+  mapa.set("Edad", 40)
+  mapa.set("Profesiones", ["fotógrafo", "director de tv", "desarrollador"]);
+  mapa.set({})
+
+
+  console.log(mapa)
+  console.log(mapa.size)
+  console.log(mapa.has("Edad"))
+  console.log(`Mi nombre es: ${mapa.get("Nombre")}`)
+
+  setTimeout(() => {
+   mapa.delete("Edad");
+   console.log(mapa)
+  }, 1000);
+
+  console.log(" + - + Recorrida con For Of del Mapa + - +")
+  for (let [llaveciña, valorcirijillo] of mapa) {
+   console.log(llaveciña + ": " + valorcirijillo)
+  }
+
+  const mapaJoaquin = new Map([
+   ["Nombre", "Joaquín"],
+   ["Edad", 2],
+   ["¿Hermoso?", true],
+   [57527201, "DNI"],
+  ])
+
+  console.log(mapaJoaquin)
+
+  console.log("=== Recorrida For Of de Joaquin ===")
+  for (let [key, val] of mapaJoaquin) {
+   console.log(key + ": " + val)
+  }
+
+
+  // WeakSets & WeakMaps
+
+  const weakSet = new WeakSet()
+  let valor1 = { "Valorilijillo 1": 01 }
+  let valor2 = { "Valor 2": 2 }
+  let valor3 = { "Vale": 3 }
+
+  weakSet.add(valor1)
+  weakSet.add(valor2)
+  weakSet.add(valor3)
+  setInterval(() => console.log(weakSet), 1000);
+
+  setTimeout(() => {
+   valor1 = null;
+   valor2 = null;
+   valor3 = null;
+  }, 5000);
+
+
+  const wm = new WeakMap()
+  let llave1 = {};
+  let llave2 = {};
+  let llave3 = {};
+
+  wm.set(llave1, 1)
+  wm.set(llave2, 2)
+  wm.set(llave3, 3)
+
+
+  console.log(wm)
+
+//   -   ITERADOR   &   ITERABLES   -- Clase 53
+
+  const iterable = [1, 2, "Tres", 4];
+
+  //Accedemos al interador del iterable
+  const iterador = iterable[Symbol.iterator]();
+
+  console.log(iterable);
+  console.log(iterador)
+
+  //console.log(iterador.next())
+  //console.log(iterador.next())
+  //console.log(iterador.next())
+  //console.log(iterador.next())
+  //console.log(iterador.next())
+
+  let next = iterador.next();
+  while (!next.done) {
+   console.log(next.value);
+   next = iterador.next()
+  }
+
+
+  //   -  Generators   -   Clase 54
+
+  function* iterable() {
+   yield "Holirijillo facha";
+   console.log("Hola papá, como va? TXT");
+   yield "2 - Segundo hola";
+   console.log("Seguimos codeando, más data data. TXT TXT");
+   yield "Hola 3";
+   yield "4 holis 4";
+  }
+
+  let iterador = iterable();
+  //console.log(iterador.next())
+  //console.log(iterador.next())
+  //console.log(iterador.next())
+  //console.log(iterador.next())
+
+  for (let y of iterador) {
+   console.log(y);
+  }
+
+  const arr = [...iterable()];
+  console.log(arr);
+
+  console.log("--- Asincronía en una función Generadora --- ")
+
+  function cuadrado(valor) {
+   setTimeout(() => {
+    return console.log({ valor, resultado: valor * valor })
+   }, Math.random() * 1000);
+  }
+
+  function* generador() {
+   console.log("Inicia Generador");
+   yield cuadrado(0);
+   yield cuadrado(1);
+   yield cuadrado(2);
+   yield cuadrado(3);
+   yield cuadrado(4);
+   console.log(("Generador Terminadirijillo"));
+  }
+
+  let gen = generador();
+
+  for (let y of gen) {
+   console.log(y);
+  }
+
+
+  //   PROXIES
+
+
+  const persona = {
+   nombre: "",
+   apellido: "",
+   edad: 0
+  }
+
+  const manejador = {
+   set(obj, prop, valor) {
+    if (Object.keys(obj).indexOf(prop) === -1) {
+     return console.warn(`La propiedad "${prop}" No existe en el objeto persona, errorjillo amiguillo.`)
+    }
+    if (
+     (prop === "nombre" || prop === "apellido") &&
+     !(/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/g.test(valor))
+    ) {
+     return console.warn(`La propiedad "${prop}" sólo acepta letras y espacios en blanco`);
+    }
+    obj[prop] = valor;
+   }
+  }
+
+  const Ser = new Proxy(persona, manejador);
+  Ser.nombre = "Sergio";
+  Ser.apellido = "Ortega";
+  Ser.edad = 40;
+  Ser.twitter = "@sergiofoto";
+
+  console.log(Ser);
+
+  console.log(persona);
+
+
+
+
+  // Propiedades dinámicas de objetos
+
+
+
+
+  const objUsuarios = {
+   [`Id_${Math.round(Math.random() * 100 + 5)}`]: "Valor Aleatorio"
+  }
+  console.log(objUsuarios);
+
+  const usuarios = ["Sergio", "Noe", "Joaquín", "Shellmanss"];
+  usuarios.forEach((usuario, index) => objUsuarios[`id_${index}`] = usuario)
+
+  console.log(objUsuarios);
+*/
+
+  // THIS
+
+  console.log(this)
+  console.log(window)
+  console.log(this === window)
+  this.nombre = "contexto Global"
+  console.log(this.nombre)
+
+  function imprimir() {
+   console.log(this.nombre)
+  }
+
+  const obj = {
+   nombre: "☺ ☻ ☺ Contexto Objetirilijilllo",
+   imprimir: function () {
+    console.log(this.nombre);
+   }
+  }
+
+  obj.imprimir()
+
+  const obj2 = {
+   nombre: "Contexto Objeto 2 duquesasssss",
+   imprimir
+  }
+  obj2.imprimir()
+
+  const obj3 = {
+   nombre: "☺ Contexto Objet 3 3 3",
+   imprimir: () => {
+    console.log(this.nombre);
+   }
+  }
+  obj3.imprimir()
+  //En el caso anterior, la arrow function no genera scope, entonces el contexto pasa al contexto padre
+
+
+
+  function Persona(nombre) {
+   this.nombre = nombre;
+   return () => console.log("Ejecutando función persona... >> " + this.nombre)
+
+
+   //return console.log("Ejecutando función persona... >> " + this.nombre)
+
+  }
+
+  let Ser = new Persona("Sergio")
+  Ser()
+
+
+ </script>
+</body>
+
+</html>

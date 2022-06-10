@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <title>Clase 14 - Condicionales │ Fundamentos Javascript │ Aprende JS con JonMircha</title>
+</head>
+<body>
+    <div class="container">
+        <br>
+    <h1>Manejo de errores</h1>
+    <h3>Clase 16</h3>
+    <h4>Ver en la consola presionando F12</h4>    
+</div>
+
+<script>
+try {
+    console.log("comienzo de try catch. buscando errores...")
+    for (const key in object) {
+        if (Object.hasOwnProperty.call(object, key)) {
+            const element = object[key];
+            
+        }
+    }
+} catch (mal) {
+    console.log("Se ha encontrado error!!!")
+    console.log("es este: "+mal)
+} finally {
+    console.log("Fin de la busqueda de errores")
+}
+
+console.clear()
+
+try {
+    let numero = prompt("ingrese edad")
+    if (isNaN(numero)) {
+     throw new Error("El caracter introducido no es un Número")
+    }
+    console.log("usted tiene: " + numero / 7 + " años de perro")
+} catch (error) {
+    console.log(`se produjo el siguiente error: ${error}`)    
+}
+
+
+</script>
+    
+</body>
+</html>

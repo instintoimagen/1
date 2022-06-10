@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8">
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+ <!-- BOOTSTRAP - Latest compiled and minified CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+ <title> MODULOS │ Fundamentos Javascript │ Aprende JS con JonMircha</title>
+
+</head>
+
+<body>
+ <div class="container">
+  <br>
+  <h1>Asincronía en JavaScript</h1>
+  <h4>Ver en la consola presionando</h4>
+  <button class="btn btn-primary">F12</button>
+ </div>
+
+ <script>
+  //Set Timeout y Set Interval
+  /*
+    console.log("inicio\nespere dos segundo")
+    setTimeout(() => {
+     console.log("...1 segundo")
+    }, 1000);
+    setTimeout(() => {
+     console.log("+++++++Ejecutado el setTimeoutirijillo... ++++++++++++\n esto se ejecuta una sola vez")
+    }, 2000);
+  
+    setInterval(() => {
+     console.log("Ejetutando un setInterval\nSe ejecuta indefinidamente")
+    }, 4000);
+    
+      setInterval(() => {
+       console.log(new Date().toLocaleTimeString())
+      }, 1000);
+     */
+
+  // Cancelar temporizadores
+  // para setTimeout se necesita ponerlo en una variable
+
+  /* console.log("Inicio\nLa hora acutal es:")
+  let temporizador = setTimeout(() => {
+   console.log(new Date().toLocaleTimeString())
+  }, 1000);
+
+  clearTimeout(temporizador);
+
+  console.log("despues del cearTimeout")
+ 
+  console.log("Inicio\nLa hora acutal es:")
+  let interval = setInterval(() => {
+   console.log(new Date().toLocaleTimeString())
+  }, 1000);
+  
+  setTimeout(() => {
+   clearInterval(interval);
+   console.log("*****  Interval Cancelado  ****")
+  }, 5000);
+
+
+  // Código Síncrono Bloqueante
+  (() => {
+   console.log("--- + --- Código Síncrono --- + ---")
+   console.log("A - Inicio")
+
+   function dos() {
+    console.log("C - Dos - 2")
+   }
+
+   function uno() {
+    console.log("B - Uno - 1")
+    dos()
+    console.log("D - Tres - 3")
+   }
+
+   uno()
+   console.log("B - FIN - </>")
+  })();
+
+  console.log("================");
+
+  // Código Asíncrono No Bloqueante
+  (() => {
+   console.log("+++ - +++ Código Asíncrono +++ - +++")
+   console.log("A - Inicio")
+
+   function dos() {
+    setTimeout(function () {
+     console.log("C - Dos - 2")
+    }, 1000);
+   }
+
+   function uno() {
+    setTimeout(function () {
+     console.log("B - Uno - 1")
+    }, 0);
+    dos()
+    console.log("D - Tres - 3")
+   }
+
+   uno();
+   console.log("B - FIN - </>")
+  })();
+
+// CallBack
+  function cuadradoCallback(value, callback) {
+   setTimeout(() => {
+    callback(value, value * value);
+   }, 0 | Math.random() * 1000);
+  }
+
+  cuadradoCallback(0, (value, result) => {
+   console.log("Inicia Callback");
+   console.log(`Callback: ${value}, ${result}`);
+   cuadradoCallback(1, (value, result) => {
+    console.log(`Callback: ${value}, ${result}`);
+    cuadradoCallback(2, (value, result) => {
+     console.log(`Callback: ${value}, ${result}`);
+     cuadradoCallback(3, (value, result) => {
+      console.log(`Callback: ${value}, ${result}`);
+      cuadradoCallback(4, (value, result) => {
+       console.log(`Callback: ${value}, ${result}`);
+       cuadradoCallback(5, (value, result) => {
+        console.log(`Callback: ${value}, ${result}`);
+        console.log("Fin Callback");
+        console.log("Callback Hell 😈 🤘!!!")
+       });
+      });
+     });
+    });
+   });
+  })
+
+
+
+  //    PROMESAS
+  function cuadradoPromise(value) {
+   if (typeof value !== "number")
+    return Promise.reject(`Error, el "${value}" ingresado no es un número`);
+   return new Promise((resolve, reject) => {
+    setTimeout(() => {
+     resolve({
+      value,
+      result: value * value
+     });
+    }, 0 | Math.random() * 1000);
+   });
+  }
+
+  cuadradoPromise(0)
+   .then(obj => {
+    //console.log(obj)
+    console.log("inicia promise");
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    return cuadradoPromise(1);
+   })
+   .then(obj => {
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    return cuadradoPromise(2);
+   })
+   .then(obj => {
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    return cuadradoPromise(3);
+   })
+   .then(obj => {
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    return cuadradoPromise(4);
+   })
+   .then(obj => {
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    return cuadradoPromise(5);
+   })
+   .then(obj => {
+    console.log(`Promise: ${obj.value}, ${obj.result}`);
+    console.log("FIN PROMISE");
+   })
+   .catch(err => console.error(err))
+
+
+// Funciones Asíncronas    -   como función DECLARADA
+
+  function cuadradoPromise(value) {
+   if (typeof value !== "number")
+    return Promise.reject(`Error, el "${value}" ingresado no es un número`);
+   return new Promise((resolve, reject) => {
+    setTimeout(() => {
+     resolve({
+      value,
+      result: value * value
+     });
+    }, 0 | Math.random() * 1000);
+   });
+  }
+
+  async function funcionAsincronaDeclarada() {
+   try {
+    console.log("Inicio de función asíncrona\n---------------------------");
+
+    let obj = await cuadradoPromise(0);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+    obj = await cuadradoPromise(1);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+    obj = await cuadradoPromise(2);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+    obj = await cuadradoPromise(3);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+    obj = await cuadradoPromise(4);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+    obj = await cuadradoPromise(5);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+
+    console.log("---------------------------\n++ Fin Función Asíncrona ++")
+   } catch (err) {
+    console.error(err)
+   }
+  }
+
+ funcionAsincronaDeclarada()
+
+
+  // Funciones Asíncronas    -   como función EXPRESADA
+
+  const funcionAsincronaExpresada = async () => {
+   try {
+    console.log("Inicio de función asíncrona EXPESADA\n------------------------------------");
+
+    let obj = await cuadradoPromise(0);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+    obj = await cuadradoPromise(1);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+    obj = await cuadradoPromise(2);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+    obj = await cuadradoPromise(3);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+    obj = await cuadradoPromise(4);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+    obj = await cuadradoPromise(5);
+    console.log(`Función Asíncrona: ${obj.value}, ${obj.result}`);
+
+    console.log("-------------------------------------\n++ Fin Función Asíncrona EXPRESADA ++")
+   } catch (err) {
+    console.error(err)
+   }
+  }
+
+  funcionAsincronaExpresada()
+*/ 
+
+
+
+
+
+ </script>
+</body>
+
+</html>
